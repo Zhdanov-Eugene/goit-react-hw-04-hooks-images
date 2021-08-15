@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
 
-function App() {
+import ImageGallery from './components/ImageGallery/ImageGallery';
+import Layout from './components/Layout/Layout';
+import Searchbar from './components/Searchbar/Searchbar';
+
+export default function App() {
+  const [imageName, setImageName] = useState('');
+
+  const handleFormSubmit = imageName => {
+    setImageName(imageName);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Searchbar onSubmit={handleFormSubmit} />
+      <ImageGallery imageName={imageName} />
+    </Layout>
   );
 }
-
-export default App;
